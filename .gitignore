@@ -1,4 +1,5 @@
-*.suo
-*.user
-BandDraw\bin
-BandDraw\obj\
+**/*.suo
+**/*.user
+**/bin
+**/obj
+.vs
