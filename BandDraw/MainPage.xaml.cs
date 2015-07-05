@@ -25,6 +25,8 @@ namespace BandDraw
                 _typeOfPresentWheel.Spin();
                 _nextTapAction = null;
             };
+
+            Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().Title = "Grattis";
         }
 
         private void Page_Tapped(object sender, TappedRoutedEventArgs e)

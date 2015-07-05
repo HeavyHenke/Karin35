@@ -24,7 +24,7 @@
             <Canvas.RenderTransform>
                 <RotateTransform x:Name="_canvasRotTrans"></RotateTransform>
             </Canvas.RenderTransform>
-            <Ellipse Canvas.Left="10" Canvas.Top="10" Width="120" Height="100" Stroke="Black" Name="_ellipse" />
+            <Ellipse Canvas.Left="10" Canvas.Top="10" Width="120" Height="100" Stroke="BurlyWood" StrokeThickness="6" Name="_ellipse" />
         </Canvas>
 
         <Polygon Fill="BlueViolet" Points="20,40 0,20 40,20" x:Name="_winPoint">

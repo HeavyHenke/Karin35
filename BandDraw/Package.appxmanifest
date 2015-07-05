@@ -22,7 +22,7 @@
 
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="BandDraw.App">
-      <uap:VisualElements DisplayName="BandDraw" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="BandDraw" BackgroundColor="#464646">
+      <uap:VisualElements DisplayName="Karin 35 år" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Karin35" BackgroundColor="#464646">
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
