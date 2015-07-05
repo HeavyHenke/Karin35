@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -49,11 +50,20 @@ namespace BandDraw
 
             for (int i = 0; i < 10; i++)
             {
-                var line = new Line {Stroke = new SolidColorBrush(Colors.Black)};
+                var line = new Line
+                {
+                    Stroke = new SolidColorBrush(Colors.White),
+                    StrokeThickness = 5,
+                };
                 _lines.Add(line);
                 _wheelCanvas.Children.Add(line);
 
-                var text = new TextBlock {RenderTransform = new RotateTransform()};
+                var text = new TextBlock
+                {
+                    RenderTransform = new RotateTransform(),
+                    FontWeight = FontWeights.Bold,
+                    FontSize = 20,
+                };
                 _textBlocks.Add(text);
                 _wheelCanvas.Children.Add(text);
             }

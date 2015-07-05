@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Tapped="Page_Tapped" >
-
-    <Grid Background="HotPink" Name="_grid">
+        
+        <Grid Background="HotPink" Name="_grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
@@ -16,6 +16,8 @@
             <ColumnDefinition Width="110"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
+        <Canvas Name="_tinkleCanvas" SizeChanged="TwinkleCanvas_OnSizeChanged" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
         <!--<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords" FontSize="18" FontWeight="Bold">Grattis på 35-års dagen, spinn lyckohjulen för att se din present!</TextBlock>-->
 

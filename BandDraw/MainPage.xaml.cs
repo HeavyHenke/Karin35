@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,10 +16,19 @@ namespace BandDraw
 
         private Action _nextTapAction;
 
+        private readonly List<TwinkleStar> _stars = new List<TwinkleStar>(10);
+
         public MainPage()
         {
             InitializeComponent();
             //_bandIO.Connect();
+
+            for (int i = 0; i < 20; i++)
+            {
+                var twnk = new TwinkleStar(i);
+                _tinkleCanvas.Children.Add(twnk);
+                _stars.Add(twnk);
+            }
 
             _nextTapAction = () =>
             {
@@ -64,7 +74,7 @@ namespace BandDraw
         {
             _nextTapAction = () =>
             {
-                HideWheelAndPlaceText(_whenWheel, 1);
+                HideWheelAndPlaceText(_whenWheel, 2);
 
                 _nextTapAction = () =>
                 {
@@ -108,6 +118,15 @@ namespace BandDraw
             };
         }
 
+        private void TwinkleCanvas_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var rnd = new Random();
+            foreach (var twnk in _stars)
+            {
+                twnk.SetValue(Canvas.LeftProperty, rnd.Next(0, (int)_tinkleCanvas.ActualWidth));
+                twnk.SetValue(Canvas.TopProperty, rnd.Next(0, (int)_tinkleCanvas.ActualHeight));
+            }
+        }
     }
 
 }
