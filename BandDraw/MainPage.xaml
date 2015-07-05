@@ -25,7 +25,7 @@
             <local:FortuneWheel x:Name="_mormorWheel" Height="100" Width="80"/>
         </StackPanel>
 
-        <local:FortuneWheel Grid.Row="1" Grid.Column="1" x:Name="_typeOfPresentWheel" Title="Vad blir det för present?" Values="Skor, Tuggummi, Väska, Resa, Ost, Trosor, Strumpa, Shopping, Middag, Utemöbler" FoolValue="Straff" CorrectValue="Resa" SpinComplete="TypeOfPresent_OnSpinComplete" />
+        <local:FortuneWheel Grid.Row="1" Grid.Column="1" x:Name="_typeOfPresentWheel" Title="Vad blir det för present?" Values="Skor, Tuggummi, Väska, Resa, Ost, Trosor, Strumpa, Shopping, Middag, Utemöbler" CorrectValue="Resa" SpinComplete="TypeOfPresent_OnSpinComplete" />
 
     </Grid>
 </Page>

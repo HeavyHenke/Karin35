@@ -7,12 +7,16 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
+using static System.Math;
+
 namespace BandDraw
 {
     public sealed partial class FortuneWheel
     {
         private readonly List<Line> _lines = new List<Line>();
         private readonly List<TextBlock> _textBlocks = new List<TextBlock>();
+
+        private int _numPossibilities = 10;
 
         public event Action SpinComplete;
 
@@ -26,13 +30,9 @@ namespace BandDraw
                 {
                     _textBlocks[i].Text = vals[i];
                 }
-            }
-        }
 
-        public string FoolValue
-        {
-            get { return _textBlocks[3].Text; }
-            set { _textBlocks[3].Text = value; }
+                SetNumPossibilities(Min(vals.Count, 10));
+            }
         }
 
         public string CorrectValue { get; set; }
@@ -59,7 +59,7 @@ namespace BandDraw
             }
 
 #if DEBUG
-            _sbDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            //_sbDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
 #endif
         }
 
@@ -70,10 +70,23 @@ namespace BandDraw
             var timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(1.5)};
             timer.Tick += (sender, o) =>
             {
-                _textBlocks[3].Text = CorrectValue ?? "";
+                _textBlocks[0].Text = CorrectValue ?? "";
                 RecalculateLayout();
             };
             timer.Start();
+        }
+
+        private void SetNumPossibilities(int num)
+        {
+            _numPossibilities = num;
+            for (int i = _numPossibilities; i < 10; i++)
+            {
+                _lines[i].Visibility = Visibility.Collapsed;
+                _textBlocks[i].Visibility = Visibility.Collapsed;
+            }
+
+            RecalculateLayout();
+            _sbDoubleAnimation.To = 360*4 - (360.0/_numPossibilities)/2;
         }
 
         private void _canvas_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -86,7 +99,7 @@ namespace BandDraw
             _wheelCanvas.Width = _mainCanvas.ActualWidth;
             _wheelCanvas.Height = _mainCanvas.ActualHeight;
 
-            var elipseSize = Math.Min(_wheelCanvas.Width, _wheelCanvas.Height) - 20;
+            var elipseSize = Min(_wheelCanvas.Width, _wheelCanvas.Height) - 20;
             if (elipseSize <= 0) return;
 
             _ellipse.Width = elipseSize;
@@ -100,25 +113,25 @@ namespace BandDraw
 
             _title.Width = _mainCanvas.ActualWidth;
 
-            var angleAddPerLine = (360.0 / (_lines.Count)) * Math.PI / 180.0;
-            var angle = 0.0;
+            var angleAddPerLine = (360.0 / _numPossibilities) * PI / 180.0;
+            var angle = -90.0*PI/180.0;
             var lineLength = elipseSize / 2.0;
-            for (int i = 0; i < _lines.Count; i++)
+            for (int i = 0; i < _numPossibilities; i++)
             {
                 _lines[i].X1 = lineLength + 10;
                 _lines[i].Y1 = lineLength + 10;
 
-                _lines[i].X2 = lineLength + Math.Sin(angle) * lineLength + 10;
-                _lines[i].Y2 = lineLength + Math.Cos(angle) * lineLength + 10;
+                _lines[i].X2 = lineLength + Cos(angle) * lineLength + 10;
+                _lines[i].Y2 = lineLength + Sin(angle) * lineLength + 10;
 
-                var x = lineLength + Math.Sin(angle + angleAddPerLine / 2.0) * lineLength * 0.8 + 10 - _textBlocks[i].ActualWidth / 2;
-                var y = lineLength + Math.Cos(angle + angleAddPerLine / 2.0) * lineLength * 0.8 + 10 - _textBlocks[i].ActualHeight / 2;
+                var x = lineLength + Cos(angle + angleAddPerLine / 2.0) * lineLength * 0.8 + 10 - _textBlocks[i].ActualWidth / 2;
+                var y = lineLength + Sin(angle + angleAddPerLine / 2.0) * lineLength * 0.8 + 10 - _textBlocks[i].ActualHeight / 2;
                 _textBlocks[i].SetValue(Canvas.LeftProperty, x);
                 _textBlocks[i].SetValue(Canvas.TopProperty, y);
 
                 ((RotateTransform)_textBlocks[i].RenderTransform).CenterX = _textBlocks[i].ActualWidth / 2;
                 ((RotateTransform)_textBlocks[i].RenderTransform).CenterY = _textBlocks[i].ActualHeight / 2;
-                ((RotateTransform)_textBlocks[i].RenderTransform).Angle = -(angle + angleAddPerLine / 2) * 180 / Math.PI + 180;
+                ((RotateTransform)_textBlocks[i].RenderTransform).Angle = (angle + angleAddPerLine / 2) * 180 / PI + 90;
 
                 angle += angleAddPerLine;
             }
