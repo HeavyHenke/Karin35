@@ -9,10 +9,12 @@
     d:DesignWidth="400">
 
     <Canvas SizeChanged="_canvas_SizeChanged" Name="_mainCanvas">
+        <TextBlock Name="_title" Text="" TextAlignment="Center" FontWeight="SemiBold" FontSize="18" Width="200" />
+        
         <Canvas  Name="_wheelCanvas">
             <Canvas.Resources>
-                <Storyboard x:Name="_sb" >
-                    <DoubleAnimation From="0" To="1746" Storyboard.TargetName="_canvasRotTrans" FillBehavior="HoldEnd" Storyboard.TargetProperty="Angle" Duration="00:00:12">
+                <Storyboard x:Name="_sb" Completed="_sb_OnCompleted" >
+                    <DoubleAnimation x:Name="_sbDoubleAnimation"  From="0" To="1746" Storyboard.TargetName="_canvasRotTrans" FillBehavior="HoldEnd" Storyboard.TargetProperty="Angle" Duration="00:00:12">
                         <DoubleAnimation.EasingFunction>
                             <QuinticEase EasingMode="EaseOut"></QuinticEase>
                         </DoubleAnimation.EasingFunction>

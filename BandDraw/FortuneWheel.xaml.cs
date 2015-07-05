@@ -1,28 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
-
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace BandDraw
 {
-    public sealed partial class FortuneWheel : UserControl
+    public sealed partial class FortuneWheel
     {
         private readonly List<Line> _lines = new List<Line>();
         private readonly List<TextBlock> _textBlocks = new List<TextBlock>();
+
+        public event Action SpinComplete;
 
         public string Values
         {
@@ -45,38 +37,51 @@ namespace BandDraw
 
         public string CorrectValue { get; set; }
 
+        public string Title
+        {
+            get { return _title.Text; }
+            set { _title.Text = value; }
+        }
+
         public FortuneWheel()
         {
-            this.InitializeComponent();
-
-            //var presents = new[]{"Skor", "Tuggummi", "Väska", "Resa", "Ost", "Trosor", "Strumpa", "Shopping", "Middag", "Utemöbler"};
+            InitializeComponent();
 
             for (int i = 0; i < 10; i++)
             {
-                var line = new Line();
-                line.Stroke = new SolidColorBrush(Colors.Black);
+                var line = new Line {Stroke = new SolidColorBrush(Colors.Black)};
                 _lines.Add(line);
                 _wheelCanvas.Children.Add(line);
 
-                var text = new TextBlock();
-                //text.Text = presents[i];
-                text.RenderTransform = new RotateTransform();
+                var text = new TextBlock {RenderTransform = new RotateTransform()};
                 _textBlocks.Add(text);
                 _wheelCanvas.Children.Add(text);
             }
+
+#if DEBUG
+            _sbDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+#endif
         }
 
         public void Spin()
         {
             _sb.Begin();
 
-            var timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1.5);
-            timer.Tick += (sender, o) => _textBlocks[3].Text = CorrectValue;
+            var timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(1.5)};
+            timer.Tick += (sender, o) =>
+            {
+                _textBlocks[3].Text = CorrectValue ?? "";
+                RecalculateLayout();
+            };
             timer.Start();
         }
 
         private void _canvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            RecalculateLayout();
+        }
+
+        private void RecalculateLayout()
         {
             _wheelCanvas.Width = _mainCanvas.ActualWidth;
             _wheelCanvas.Height = _mainCanvas.ActualHeight;
@@ -92,6 +97,8 @@ namespace BandDraw
 
             _winPointTransform.X = elipseSize / 2 - 10;
             _winPointTransform.Y = -20;
+
+            _title.Width = _mainCanvas.ActualWidth;
 
             var angleAddPerLine = (360.0 / (_lines.Count)) * Math.PI / 180.0;
             var angle = 0.0;
@@ -117,9 +124,10 @@ namespace BandDraw
             }
         }
 
-        private void _canvasAnim_OnCompleted(object sender, object e)
-        {
-        }
 
+        private void _sb_OnCompleted(object sender, object e)
+        {
+            SpinComplete?.Invoke();
+        }
     }
 }
