@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="BandDraw.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BandDraw"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Tapped="Page_Tapped"  >
+
+    <Grid Background="HotPink">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords" FontSize="18" FontWeight="Bold">Grattis på 35-års dagen, spinn lyckohjulen för att se din present!</TextBlock>
+
+         <StackPanel Grid.Row="1" Grid.Column="0">
+            <local:FortuneWheel x:Name="_presentTypeWheel2" Height="100" Width="80"></local:FortuneWheel>
+            <local:FortuneWheel x:Name="_presentTypeWheel3" Height="100" Width="80"></local:FortuneWheel>
+            <local:FortuneWheel x:Name="_presentTypeWheel4" Height="100" Width="80"></local:FortuneWheel>
+        </StackPanel>
+        
+        <local:FortuneWheel Grid.Row="1" Grid.Column="1" x:Name="_presentTypeWheel" Values="Skor, Tuggummi, Väska, Resa, Ost, Trosor, Strumpa, Shopping, Middag, Utemöbler" FoolValue="Straff" CorrectValue="Resa" ></local:FortuneWheel>
+
+    </Grid>
+</Page>
