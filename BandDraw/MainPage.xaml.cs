@@ -78,7 +78,7 @@ namespace BandDraw
 
                 _nextTapAction = () =>
                 {
-                    ShowNextWheel(_mormorWheel, "Present till mormor", "Skor, Tuggummi, Väska, Ost, Strumpa, Shopping, Utemöbler", "Passa alla barnen");
+                    ShowNextWheel(_mormorWheel, "Present till mormor", "Skor, Tuggummi, Väska, Strumpa, Shopping, Utemöbler", "Passa alla barnen");
                 };
             };
         }
