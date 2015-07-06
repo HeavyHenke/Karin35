@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Windows.UI.Core;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -7,15 +8,11 @@ using Windows.UI.Xaml.Input;
 
 namespace BandDraw
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage
     {
-        // private readonly BandIO _bandIO = new BandIO();
+        private readonly BandIO _bandIO = new BandIO();
 
         private Action _nextTapAction;
-
         private readonly List<TwinkleStar> _stars = new List<TwinkleStar>(10);
 
         public MainPage()
@@ -37,6 +34,12 @@ namespace BandDraw
             };
 
             Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().Title = "Grattis";
+
+            _bandIO.Connect();
+            _bandIO.Pulled += () =>
+            {
+                Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _nextTapAction?.Invoke());
+            };
         }
 
         private void Page_Tapped(object sender, TappedRoutedEventArgs e)
