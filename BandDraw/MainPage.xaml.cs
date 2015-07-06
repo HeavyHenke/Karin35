@@ -15,6 +15,8 @@ namespace BandDraw
         private Action _nextTapAction;
         private readonly List<TwinkleStar> _stars = new List<TwinkleStar>(10);
 
+        private DateTime _lastAcccelerometerAction = DateTime.MinValue;
+
         public MainPage()
         {
             InitializeComponent();
@@ -38,6 +40,9 @@ namespace BandDraw
             _bandIO.Connect();
             _bandIO.Pulled += () =>
             {
+                if ((DateTime.UtcNow - _lastAcccelerometerAction).TotalSeconds < 1)
+                    return;
+                _lastAcccelerometerAction = DateTime.UtcNow;
                 Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _nextTapAction?.Invoke());
             };
         }
