@@ -1,14 +1,12 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 
 namespace BandDraw
 {
-    public sealed partial class TwinkleStar : UserControl
+    public sealed partial class TwinkleStar
     {
         private readonly Random _rnd;
-        private DispatcherTimer _timer;
+        private readonly DispatcherTimer _timer;
 
         public TwinkleStar(int seed)
         {

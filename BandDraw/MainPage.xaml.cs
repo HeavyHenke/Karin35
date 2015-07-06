@@ -29,6 +29,12 @@ namespace BandDraw
                 _stars.Add(twnk);
             }
 
+            for (int i = 0; i < 3; i++)
+            {
+                var ballon = new FloatingBallon(i);
+                _tinkleCanvas.Children.Add(ballon);
+            }
+
             _nextTapAction = () =>
             {
                 _typeOfPresentWheel.Spin();

@@ -97,6 +97,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BandIO.cs" />
+    <Compile Include="FloatingBallon.xaml.cs">
+      <DependentUpon>FloatingBallon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FortuneWheel.xaml.cs">
       <DependentUpon>FortuneWheel.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ballon_256.png" />
     <Content Include="Assets\wood_background_wallpaper_pictures_cover_hd_217_backgrounds.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\Logo.scale-100.png" />
@@ -130,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="FloatingBallon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FortuneWheel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
