@@ -19,15 +19,13 @@
         
         <Canvas Name="_tinkleCanvas" SizeChanged="TwinkleCanvas_OnSizeChanged" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
-        <!--<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords" FontSize="18" FontWeight="Bold">Grattis på 35-års dagen, spinn lyckohjulen för att se din present!</TextBlock>-->
-
         <StackPanel Grid.Row="1" Grid.Column="0" Name="_leftStack">
             <local:FortuneWheel x:Name="_destinationWheel" Height="100" Width="80" SpinComplete="DestinationWheel_OnSpinComplete"/>
             <local:FortuneWheel x:Name="_whenWheel" Height="100" Width="80" SpinComplete="WhenWheel_OnSpinComplete"/>
             <local:FortuneWheel x:Name="_mormorWheel" Height="100" Width="80"/>
         </StackPanel>
 
-        <local:FortuneWheel Grid.Row="1" Grid.Column="1" x:Name="_typeOfPresentWheel" Title="Vad blir det för present?" Values="Skor, Tuggummi, Väska, Resa, Ost, Trosor, Strumpa, Shopping, Middag, Utemöbler" CorrectValue="Resa" SpinComplete="TypeOfPresent_OnSpinComplete" />
+        <local:FortuneWheel Grid.Row="1" Grid.Column="1" x:Name="_typeOfPresentWheel" Title="Vad blir det för present?" Values="Skor, Tuggummi, Väska, Straff, Ost, Trosor, Strumpa, Shopping, Middag, Utemöbler" CorrectValue="Resa" SpinComplete="TypeOfPresent_OnSpinComplete" />
 
     </Grid>
 </Page>
