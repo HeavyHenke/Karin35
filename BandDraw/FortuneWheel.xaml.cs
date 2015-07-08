@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Shapes;
 
 using static System.Math;
 
-namespace BandDraw
+namespace Karin35
 {
     public sealed partial class FortuneWheel
     {

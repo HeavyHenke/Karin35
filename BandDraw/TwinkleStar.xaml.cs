@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 
-namespace BandDraw
+namespace Karin35
 {
     public sealed partial class TwinkleStar
     {

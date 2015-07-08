@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace BandDraw
+namespace Karin35
 {
     public sealed partial class MainPage
     {

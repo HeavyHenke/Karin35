@@ -7,7 +7,7 @@
     <ProjectGuid>{AB7B5EA5-E875-4F02-82AB-BF813410CEE6}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BandDraw</RootNamespace>
+    <RootNamespace>Karin35</RootNamespace>
     <AssemblyName>Karin35</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>

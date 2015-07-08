@@ -4,7 +4,7 @@ using Microsoft.Band;
 using Microsoft.Band.Sensors;
 using static System.Math;
 
-namespace BandDraw
+namespace Karin35
 {
     public class BandIO
     {

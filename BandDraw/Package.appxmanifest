@@ -7,7 +7,7 @@
   <mp:PhoneIdentity PhoneProductId="cdaf6dca-e178-490f-9a44-881bb038cfb6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 
   <Properties>
-    <DisplayName>BandDraw</DisplayName>
+    <DisplayName>Karin35</DisplayName>
     <PublisherDisplayName>henri</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -21,7 +21,7 @@
   </Resources>
 
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="BandDraw.App">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Karin35.App">
       <uap:VisualElements DisplayName="Karin 35 år" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Karin35" BackgroundColor="#464646">
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>

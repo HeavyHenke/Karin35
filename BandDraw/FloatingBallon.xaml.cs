@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace BandDraw
+namespace Karin35
 {
     public sealed partial class FloatingBallon
     {
